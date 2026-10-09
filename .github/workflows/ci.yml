@@ -2,31 +2,18 @@ name: CI/CD for Static Website
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
-stages:
-  - deploy
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-pages:
-  stage: deploy
-  script:
-    - mkdir -p public
-    - cp index.html public/
-  artifacts:
-    paths:
-      - public
-  only:
-    - main
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
