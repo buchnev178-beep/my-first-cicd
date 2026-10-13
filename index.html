@@ -1,36 +1,227 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Мой первый CI/CD проект</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вдохновение Природой</title>
     <style>
+        /* Базовые стили для сброса отступов и настройки шрифта */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fa;
+            color: #333;
             line-height: 1.6;
         }
-        h1 {
+
+        /* Шапка страницы */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://unsplash.com') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Главная секция с галереей */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #2ecc71;
+            margin: 10px auto 0;
+        }
+
+        /* Адаптивная сетка карточек */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Стили карточки */
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Контейнер для картинки с эффектом зума */
+        .card-image-wrapper {
+            overflow: hidden;
+            height: 220px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Текстовое содержимое карточки */
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background-color: #e8f8f5;
+            color: #2ecc71;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
             color: #2c3e50;
         }
-        .container {
-            border: 1px solid #ddd;
+
+        .card-text {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .card-btn {
+            display: inline-block;
+            color: #2ecc71;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .card-btn:hover {
+            color: #27ae60;
+        }
+
+        /* Подвал страницы */
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
             padding: 20px;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+            margin-top: 40px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <h1>Привет, CI/CD!</h1>
-    <div class="container">
-        <p>Эта страница была автоматически развёрнута с помощью CI/CD.</p>
-        <p>И я её только что исправил ещё раз)))</p>
-        <p>Время последнего обновления: <span id="timestamp"></span></p>
-    </div>
-    
-    <script>
-        document.getElementById('timestamp').textContent = new Date().toLocaleString();
-    </script>
+
+    <!-- Шапка сайта -->
+    <header>
+        <h1>Исследуй Мир</h1>
+        <p>Фотолетопись самых живописных и умиротворяющих уголков нашей планеты, запечатленных в объективе путешественников.</p>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        <h2 class="section-title">Популярные направления</h2>
+        
+        <div class="gallery-grid">
+            
+            <!-- Карточка 1 -->
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="https://unsplash.com" alt="Горный пейзаж">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Горы</span>
+                    <h3 class="card-title">Величественные Альпы</h3>
+                    <p class="card-text">Заснеженные вершины, уходящие за облака, и кристально чистый воздух высокогорья.</p>
+                    <a href="#" class="card-btn">Читать далее &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="https://unsplash.com" alt="Морской берег">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Океан</span>
+                    <h3 class="card-title">Лазурные Побережья</h3>
+                    <p class="card-text">Бесконечные песчаные пляжи, омываемые теплыми волнами тропического океана.</p>
+                    <a href="#" class="card-btn">Читать далее &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="card">
+                <div class="card-image-wrapper">
+                    <img src="https://unsplash.com" alt="Лесная тропа">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Лес</span>
+                    <h3 class="card-title">Магия Древнего Бора</h3>
+                    <p class="card-text">Солнечные лучи, пробивающиеся сквозь густые кроны вековых изумрудных деревьев.</p>
+                    <a href="#" class="card-btn">Читать далее &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2026 Вдохновение Природой. Все права защищены.</p>
+    </footer>
+
 </body>
 </html>
